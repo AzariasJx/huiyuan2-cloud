@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.huiyuan2.cloud.mq.configuration.MessageQueueAutoConfiguration
