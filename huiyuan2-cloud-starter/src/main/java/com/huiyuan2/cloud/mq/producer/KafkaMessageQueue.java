@@ -50,7 +50,7 @@ public class KafkaMessageQueue implements MessageQueue{
         } else {
             record = new ProducerRecord<>(topic, message);
         }
-        // 还需要接收一个exception的回调，发送结果的需要进行回调通知这样子
+        // 还需要接收一个exception的回调，发送结果的需要进行回调通知
         kafkaProducer.send(record, (metadata, exception) -> {
             if (exception == null) {
                 log.info("发送消息到Kafka成功");

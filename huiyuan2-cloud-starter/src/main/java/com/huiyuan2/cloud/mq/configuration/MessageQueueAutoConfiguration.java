@@ -1,5 +1,10 @@
 package com.huiyuan2.cloud.mq.configuration;
 
+import com.huiyuan2.cloud.mq.annotation.MessageQueueListener;
+import com.huiyuan2.cloud.mq.consumer.KafkaConsumer;
+import com.huiyuan2.cloud.mq.consumer.MessageListener;
+import com.huiyuan2.cloud.mq.consumer.RocketMQConsumer;
+import com.huiyuan2.cloud.mq.enums.MessageQueueType;
 import com.huiyuan2.cloud.mq.producer.KafkaMessageQueue;
 import com.huiyuan2.cloud.mq.producer.MessageQueue;
 import com.huiyuan2.cloud.mq.producer.RocketMessageQueue;
@@ -40,7 +45,7 @@ public class MessageQueueAutoConfiguration {
     @ConditionalOnProperty(value = "huiyuan2.mq.kafka.enableProducer",havingValue = "true")
     public Properties kafkaProperties(MessageQueueProperties messageQueueProperties){
         Properties properties = new Properties();
-        properties.put("bootstrap.servers",messageQueueProperties.getKafka().getSever());
+        properties.put("bootstrap.servers",messageQueueProperties.getKafka().getServer());
         properties.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
 
@@ -75,6 +80,16 @@ public class MessageQueueAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty(value = "huiyuan2.mq.kafka.enableConsumer", havingValue = "true")
+    public KafkaConsumer kafkaConsumer(MessageQueueProperties messageQueueProperties, List<MessageListener> listeners) {
+        List<MessageListener> listenersResult =
+                listeners.stream().filter(this::matchKafka).collect(Collectors.toList());
+        return new KafkaConsumer(messageQueueProperties, listenersResult);
+    }
+
+
+
+    @Bean
     @ConditionalOnProperty(value = "huiyuan2.mq.rocketmq.enableProducer", havingValue = "true")
     public DefaultMQProducer defaultMQProducer(MessageQueueProperties messageQueueProperties) throws MQClientException {
         // rocketmq也是一样的，提取一些参数，基于Rocketmq的API，封装producer
@@ -91,5 +106,32 @@ public class MessageQueueAutoConfiguration {
     public MessageQueue rocketMessageQueue(DefaultMQProducer defaultMQProducer) {
         return new RocketMessageQueue(defaultMQProducer);
     }
+
+    @Bean
+    @ConditionalOnProperty(value = "huiyuan2.mq.rocketmq.enableConsumer",havingValue = "true")
+    public RocketMQConsumer rocketMQConsumer(MessageQueueProperties messageQueueProperties,
+                                             List<MessageListener> listeners) throws Exception{
+        List<MessageListener> listenersFiltered = listeners.stream().filter(this::matchRocketMQ).collect(Collectors.toList());
+        return new RocketMQConsumer(messageQueueProperties,listenersFiltered);
+    }
+
+    private boolean matchRocketMQ(MessageListener messageListener) {
+        Class<? extends MessageListener> clazz = messageListener.getClass();
+        if (!clazz.isAnnotationPresent(MessageQueueListener.class)) {
+            return false;
+        }
+        MessageQueueListener annotation = clazz.getAnnotation(MessageQueueListener.class);
+        return annotation.type().equals(MessageQueueType.ROCKETMQ);
+    }
+
+    private boolean matchKafka(MessageListener messageListener) {
+        Class<? extends MessageListener> clazz = messageListener.getClass();
+        if (!clazz.isAnnotationPresent(MessageQueueListener.class)) {
+            return false;
+        }
+        MessageQueueListener annotation = clazz.getAnnotation(MessageQueueListener.class);
+        return annotation.type().equals(MessageQueueType.KAFKA);
+    }
+
 
 }

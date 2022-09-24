@@ -25,7 +25,7 @@ public class MessageQueueProperties {
     public static class Kafka{
         private Boolean enableProducer;
         private Boolean enableConsumer;
-        private String sever;
+        private String server;
     }
 
     @Data
