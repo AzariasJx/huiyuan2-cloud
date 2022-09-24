@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.huiyuan2.cloud.mq.configuration.MessageQueueAutoConfiguration,\
-  com.huiyuan2.cloud.lock.configuration.DistributedLockAutoConfiguration
+  com.huiyuan2.cloud.lock.configuration.DistributedLockAutoConfiguration,\
+  com.huiyuan2.cloud.es.configuration.ElasticsearchAutoConfiguration
