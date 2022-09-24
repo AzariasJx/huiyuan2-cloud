@@ -14,4 +14,6 @@ public interface PropertiesPrefixConstant {
      */
     String LOCK_DISTRIBUTED_LOCK_WORKMODE_PREFIX = COMMON_PREFIX+ "." + "distributed.lock.redisWorkMode";
 
+    String LOCK_DISTRIBUTED_LOCK_TYPE_PREFIX = COMMON_PREFIX+ "." + "distributed.lock.type";
+
 }
