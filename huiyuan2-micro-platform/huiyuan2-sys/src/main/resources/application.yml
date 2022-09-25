@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: huiyuan2-sys-server
+  datasource:
+    url: jdbc:mysql://localhost:3307/huiyuan2-cloud-demo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8899
+
+ruyuan:
+  distributed:
+    lock:
+      type: redis
+      address: 127.0.0.1:6379
+      redisWorkMode: standalone
+      redisDatabase: 0
+  mq:
+    kafka:
+      enableProducer: true
+      enableConsumer: true
+      server: localhost:9092
+    rocketmq:
+      enableProducer: false
+      enableConsumer: false
+      server: localhost:9876
+
+  es:
+    enable: true
+    cluster-nodes:
+      - 127.0.0.1:9200
+    connection-timeout-millis: 1000
+    connection-request-timeout-millis: 500
+    socket-timeout-millis: 30000
+    max-conn-per-route: 10
+    max-conn-total: 30
+  easy:
+  # 开发调试时，打开sql打印功能
+  mybatis:
+    sql: true
+    auto-fill: true
+    page-enable: true
+
+
+
+
+
