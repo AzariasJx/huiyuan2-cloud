@@ -1,8 +1,11 @@
 package com.huiyuan2.demo.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import com.huiyuan2.cloud.common.api.CommonResult;
+import com.huiyuan2.demo.domain.DemoStaff;
+import com.huiyuan2.demo.service.DemoStaffService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @description:
@@ -13,5 +16,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RequestMapping("/demo/staff")
 public class DemoStaffController {
 
+    @Autowired
+    private DemoStaffService demoStaffService;
 
+    @PostMapping
+    public CommonResult<Long> add(@RequestBody DemoStaff demoStaff){
+       demoStaffService.getBaseMapper().insert(demoStaff);
+       return CommonResult.success(demoStaff.getId());
+    }
 }

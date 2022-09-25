@@ -4,11 +4,12 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+//import com.huiyuan2.cloud.mybatis.domain.CommonDomain;
+import com.huiyuan2.cloud.mybatis.domain.CommonDomain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.checkerframework.common.value.qual.ArrayLen;
 
 /**
  * @description:
@@ -20,7 +21,7 @@ import org.checkerframework.common.value.qual.ArrayLen;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName(value = "demo_staff")
-public class DemoStaff extends CommonDomain{
+public class DemoStaff  extends CommonDomain {
     /**
      * 主键
      */

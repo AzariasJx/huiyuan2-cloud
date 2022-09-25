@@ -1,4 +1,4 @@
-package com.huiyuan2.demo.domain;
+package com.huiyuan2.cloud.mybatis.domain;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;

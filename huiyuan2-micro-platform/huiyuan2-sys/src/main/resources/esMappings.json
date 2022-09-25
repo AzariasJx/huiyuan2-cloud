@@ -1,0 +1,15 @@
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "id": {"type": "text"},
+      "age": {"type": "integer"},
+      "name": {"type": "keyword"},
+      "createTime": {"type": "date","format": "yyyy-MM-dd HH:mm:ss"},
+      "modify_time": {"type": "date","format": "yyyy-MM-dd HH:mm:ss"}
+    }
+  }
+}
