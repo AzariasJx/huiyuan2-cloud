@@ -1,0 +1,9 @@
+syntax = "proto3";
+package com.huiyuan2.cloud.basic.network.proto;
+
+option java_multiple_files = true;
+option java_package="com.huiyuan2.cloud.basic.network.proto";
+
+message NettyPacketHeader{
+  map<string,string> headers = 1;
+}
