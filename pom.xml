@@ -11,6 +11,7 @@
     <modules>
         <module>huiyuan2-cloud-starter</module>
         <module>huiyuan2-micro-platform</module>
+        <module>huiyuan2-cloud-basic</module>
     </modules>
 
     <properties>
