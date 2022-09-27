@@ -4,6 +4,7 @@ import com.huiyuan2.cloud.basic.utils.Constants;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.LengthFieldPrepender;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -38,5 +39,15 @@ public class BaseChannelInitializer extends ChannelInitializer<SocketChannel> {
      */
     public void addHandler(AbstractChannelHandler handler){
         this.handlers.add(handler);
+    }
+
+    /**
+     * 添加自定义handler
+     * @param handlers
+     */
+    public void addHandlers(List<AbstractChannelHandler> handlers){
+        if(CollectionUtils.isNotEmpty(handlers)){
+            this.handlers.addAll(handlers);
+        }
     }
 }
