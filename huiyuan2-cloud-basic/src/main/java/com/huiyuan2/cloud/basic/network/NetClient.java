@@ -4,7 +4,7 @@ import io.netty.channel.EventLoopGroup;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @description:
+ * @description: 负责和node通讯的组件
  * @author： 灰原二
  * @date: 2022/9/26 21:52
  */
