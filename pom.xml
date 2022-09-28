@@ -5,13 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.huiyuan2</groupId>
-    <artifactId>huiyuan2-cloud-single-starter</artifactId>
+    <artifactId>huiyuan2-cloud</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>huiyuan2-cloud-starter</module>
         <module>huiyuan2-micro-platform</module>
         <module>huiyuan2-cloud-basic</module>
+        <module>huiyuan2-cloud-server</module>
     </modules>
 
     <properties>

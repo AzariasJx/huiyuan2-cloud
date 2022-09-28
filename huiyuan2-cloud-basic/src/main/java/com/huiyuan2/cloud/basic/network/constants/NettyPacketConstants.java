@@ -1,7 +1,5 @@
 package com.huiyuan2.cloud.basic.network.constants;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 /**
  * @description:
  * @author： 灰原二
