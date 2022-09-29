@@ -18,6 +18,7 @@ public class Constants {
     public static final int CHUNKED_SIZE = (int) (MAX_BYTES*0.5F);
 
     public static final String REGISTRY_TYPE = "cloud-registry";
+    public static final String CONFIG_CENTER_TYPE = "cloud-config-center";
 
     public static final int SLOTS_COUNT = 16384;
 }

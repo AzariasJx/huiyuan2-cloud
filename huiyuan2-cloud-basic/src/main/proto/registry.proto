@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.huiyuan2.cloud.basic.registry.proto;
+
+option java_multiple_files = true;
+option java_package="com.huiyuan2.cloud.basic.network.proto";
+
+message MetadataRequest{
+  string key = 1;
+  string value = 2;
+  string serviceType = 3;
+  int32 event = 4;
+}
+
+message SubscribeRequest{
+  string serviceType = 1;
+  repeated string keys =2;
+}
