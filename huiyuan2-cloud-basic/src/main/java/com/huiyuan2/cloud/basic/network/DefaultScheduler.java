@@ -23,13 +23,20 @@ public class DefaultScheduler {
     private final AtomicInteger schedulerThreadId = new AtomicInteger(0);
     private final AtomicBoolean shutdown = new AtomicBoolean(true);
 
-    public DefaultScheduler(String threadNameprefix,int threads,boolean daemon){
+
+    public DefaultScheduler(String threadNamePrefix){
+        //默认线程数量是cpu 核心*2
+        this(threadNamePrefix,Runtime.getRuntime().availableProcessors()*2,true );
+    }
+
+    public DefaultScheduler(String threadNamePrefix,int threads,boolean daemon){
+        //默认是不开启调度线程池的
         if(shutdown.compareAndSet(true,false)){
             executor = new ScheduledThreadPoolExecutor(threads,
-                    runnable-> new DefaultThread(threadNameprefix+schedulerThreadId.getAndIncrement(),daemon,runnable));
-            //当对线程池进行关闭以后，已经存在的调度任务是否需要继续
+                    runnable-> new DefaultThread(threadNamePrefix+schedulerThreadId.getAndIncrement(),daemon,runnable));
+            //当对线程池进行关闭以后，已经存在的调度任务是否需要继续 （否）
             executor.setContinueExistingPeriodicTasksAfterShutdownPolicy(false);
-            //关闭以后，延迟任务是否需要继续
+            //关闭以后，延迟任务是否需要继续 （否）
             executor.setExecuteExistingDelayedTasksAfterShutdownPolicy(false);
         }
     }

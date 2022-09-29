@@ -42,6 +42,15 @@ public class CloudInstance {
      */
     private long renewTime;
 
+    public static CloudInstance copy(CloudInstance instance){
+        return CloudInstance.builder()
+                .serviceName(instance.getServiceName())
+                .ip(instance.getIp())
+                .port(instance.getPort())
+                .customizeMetadata(new HashMap<>(instance.getCustomizeMetadata()))
+                .build();
+    }
+
 
     /**
      * 唯一标识

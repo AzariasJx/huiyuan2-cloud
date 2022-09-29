@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @description:
+ * @description: 默认的severConfig
  * @author： 灰原二
  * @date: 2022/9/28 23:32
  */
