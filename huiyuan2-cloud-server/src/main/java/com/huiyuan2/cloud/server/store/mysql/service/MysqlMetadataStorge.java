@@ -1,4 +1,4 @@
-package com.huiyuan2.cloud.server.store.mysql;
+package com.huiyuan2.cloud.server.store.mysql.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.huiyuan2.cloud.server.store.MetadataStorge;
